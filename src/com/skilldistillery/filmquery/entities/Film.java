@@ -1,41 +1,50 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.List;
+
 public class Film {
 	private int id;
 	private String title;
 	private String desc;
 	private String releaseYear;
-	private int langID;
+	private String language;
 	private int rentalDuration;
 	private double rentalRate;
 	private String length;
 	private double replaceCost;
 	private String rating;
 	private String specialFeatures;
+	private List<Actor> actors;
 	
+	public Film() {
 	
-	public Film(int id, String title, String desc, String releaseYear, int langID, int rentalDuration,
-			double rentalRate, String length, double replaceCost, String rating, String specialFeatures) {
+	}
+
+	public Film(int id, String title, String desc, String releaseYear, String language, int rentalDuration,
+			double rentalRate, String length, double replaceCost, String rating, String specialFeatures, List<Actor> actors) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.desc = desc;
 		this.releaseYear = releaseYear;
-		this.langID = langID;
+		this.language = language;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;
 		this.length = length;
 		this.replaceCost = replaceCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
+		this.actors = actors;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((actors == null) ? 0 : actors.hashCode());
 		result = prime * result + ((desc == null) ? 0 : desc.hashCode());
 		result = prime * result + id;
-		result = prime * result + langID;
+		result = prime * result + ((language == null) ? 0 : language.hashCode());
 		result = prime * result + ((length == null) ? 0 : length.hashCode());
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
 		result = prime * result + ((releaseYear == null) ? 0 : releaseYear.hashCode());
@@ -49,6 +58,7 @@ public class Film {
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -58,6 +68,11 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
+		if (actors == null) {
+			if (other.actors != null)
+				return false;
+		} else if (!actors.equals(other.actors))
+			return false;
 		if (desc == null) {
 			if (other.desc != null)
 				return false;
@@ -65,7 +80,10 @@ public class Film {
 			return false;
 		if (id != other.id)
 			return false;
-		if (langID != other.langID)
+		if (language == null) {
+			if (other.language != null)
+				return false;
+		} else if (!language.equals(other.language))
 			return false;
 		if (length == null) {
 			if (other.length != null)
@@ -100,15 +118,21 @@ public class Film {
 			return false;
 		return true;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", desc=" + desc + ", releaseYear=" + releaseYear + ", langID="
-				+ langID + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate + ", length=" + length
-				+ ", replaceCost=" + replaceCost + ", rating=" + rating + ", specialFeatures=" + specialFeatures + "]";
+		return "Film Title: " + title + ", Description: " + desc + ", Release Year: " + releaseYear + ", Language: "
+				+ language + ", Rating: " + rating +  ", Cast: "+ actors;
 	}
 	
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -133,12 +157,7 @@ public class Film {
 	public void setReleaseYear(String releaseYear) {
 		this.releaseYear = releaseYear;
 	}
-	public int getLangID() {
-		return langID;
-	}
-	public void setLangID(int langID) {
-		this.langID = langID;
-	}
+	
 	public int getRentalDuration() {
 		return rentalDuration;
 	}
@@ -175,7 +194,13 @@ public class Film {
 	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
 	}
-	
-	
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}	
 	
 }
