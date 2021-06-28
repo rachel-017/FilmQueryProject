@@ -12,7 +12,6 @@ import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class DatabaseAccessorObject implements DatabaseAccessor {
-//only class that connects to database
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 	private String user = "student";
 	private String pass = "student";
@@ -98,8 +97,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.setInt(1, actorId);
 		ResultSet actorResult = stmt.executeQuery();
 		if (actorResult.next()) {
-			actor = new Actor(); // Create the object
-			// Here is our mapping of query columns to our object fields:
+			actor = new Actor(); 
 			actor.setId(actorResult.getInt(1));
 			actor.setFirstName(actorResult.getString(2));
 			actor.setLastName(actorResult.getString(3));
